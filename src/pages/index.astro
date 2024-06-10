@@ -1,10 +1,36 @@
 ---
+import TableList from '../components/tables/TableList';
 import Layout from '../layouts/Layout.astro';
+import {users} from '../utils/mocks/users'
+import {type User} from '../models/user.model'
+const header = ['Name', 'Date', 'Favorite Food', 'Favorite Movie', 'Status', 'Action'];
+const currentDate = new Date().toISOString().split('T')[0];
+
+users.forEach(obj => {
+  obj.date = currentDate
+});
+
+let activeRecords = users.filter(obj => obj.status === 'Activo');
+
+if (activeRecords.length > 0) {
+  activeRecords.forEach(obj => {
+    console.log(`Nombre: ${obj.name}, Fecha: ${obj.date}, Película Favorita: ${obj.favMovie}`);
+  });
+} else {
+  console.log('No se encontraron registros activos.');
+}
+
+function sortByProperty(property: string) {
+  activeRecords.sort((a: User, b: User) => (a[property] > b[property]) ? 1 : ((b[property] > a[property]) ? -1 : 0));
+  activeRecords.forEach(obj => {
+    console.log(`Nombre: ${obj.name}, Fecha: ${obj.date}, Película Favorita: ${obj.favMovie}`);
+  });
+}
 ---
 
 <Layout title="Welcome to Astro.">
 	<main>
-		
+		<TableList header={header} data={users}  />
 	</main>
 </Layout>
 
