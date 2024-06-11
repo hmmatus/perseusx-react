@@ -7,7 +7,7 @@ export enum filterOptions {
 type TableListProps<T> = {
   header: string[];
   data: T[];
-  ItemComponent: React.ElementType<{ item: T }>;
+  ItemComponent: React.ElementType;
 };
 const TableList = React.memo(
   <T,>({ header, data, ItemComponent }: TableListProps<T>) => {

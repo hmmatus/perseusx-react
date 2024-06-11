@@ -1,6 +1,7 @@
 // * Hector Matus, 11/06/2024, Table Item a component that will render the data of the Table List component
 
 import type { User } from "../../models/user.model";
+import StatusTag from "../tags/StatusTag";
 
 type TableItemProps = {
   item: User;
@@ -18,7 +19,9 @@ const TableItem = ({ item }: TableItemProps) => {
       <td className="px-6 py-4">{date}</td>
       <td className="px-6 py-4">{favFood}</td>
       <td className="px-6 py-4">{favMovie}</td>
-      <td className="px-6 py-4">{status}</td>
+      <td className="px-6 py-4">
+        <StatusTag status={status} />
+      </td>
     </tr>
   );
 };
