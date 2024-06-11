@@ -1,3 +1,5 @@
+// * Hector Matus, 11/06/2024, Table Item a component that will render the data of the Table List component
+
 import type { User } from "../../models/user.model";
 
 type TableItemProps = {
@@ -17,14 +19,6 @@ const TableItem = ({ item }: TableItemProps) => {
       <td className="px-6 py-4">{favFood}</td>
       <td className="px-6 py-4">{favMovie}</td>
       <td className="px-6 py-4">{status}</td>
-      <td className="px-6 py-4">
-        <a
-          href="#"
-          className="font-medium text-blue-600 dark:text-blue-500 hover:underline"
-        >
-          Edit
-        </a>
-      </td>
     </tr>
   );
 };

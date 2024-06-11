@@ -1,6 +1,3 @@
-import { useState } from "react";
-import CustomSelect, { type Option } from "../select/CustomSelect";
-import TableItem from "./TableItem";
 export enum filterOptions {
   All = "All",
   Active = "Active",
@@ -8,28 +5,13 @@ export enum filterOptions {
 type TableListProps<T> = {
   header: string[];
   data: T[];
-  options: Option[];
-  optionValue: string;
-  onChangeOption: (option: string) => void;
+  ItemComponent: React.ElementType<{ item: T }>;
 };
-const TableList = <T,>({
-  header,
-  data,
-  options,
-  optionValue,
-  onChangeOption,
-}: TableListProps<T>) => {
-  const handleSelectOption = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    onChangeOption(e.target.value as string);
-  };
-  if (data.length === 0) return null;
+const TableList = <T,>({ header, data, ItemComponent }: TableListProps<T>) => {
+  if (data.length === 0)
+    return <div className=" text-white">No data available</div>;
   return (
     <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
-      <CustomSelect
-        options={options}
-        onChange={handleSelectOption}
-        value={optionValue}
-      />
       <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
         <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
           <tr>
@@ -42,7 +24,7 @@ const TableList = <T,>({
         </thead>
         <tbody>
           {data.map((item: any, index: number) => (
-            <TableItem key={index} item={item} />
+            <ItemComponent key={index} item={item} />
           ))}
         </tbody>
       </table>
