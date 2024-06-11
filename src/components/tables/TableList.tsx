@@ -1,9 +1,6 @@
+// * Hector Matus, 11/06/2024, Table list component that displays a list of items in a table format
 import React from "react";
 
-export enum filterOptions {
-  All = "All",
-  Active = "Active",
-}
 type TableListProps<T> = {
   header: string[];
   data: T[];
@@ -26,7 +23,7 @@ const TableList = React.memo(
             </tr>
           </thead>
           <tbody>
-            {data.map((item: any, index: number) => (
+            {data.map((item: T, index: number) => (
               <ItemComponent key={index} item={item} />
             ))}
           </tbody>

@@ -1,3 +1,4 @@
+// * Hector Matus, 11/06/2024, Tag component for user status
 import { statusEnum } from "../../models/user.model";
 
 const StatusTag = ({ status }: { status: statusEnum }) => {

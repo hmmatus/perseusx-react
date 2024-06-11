@@ -1,3 +1,4 @@
+// * Hector Matus, 11/06/2024, This file is used to mock data for the users
 import { statusEnum, type User } from "../../models/user.model";
 
 let rockyObj: User = {

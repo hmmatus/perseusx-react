@@ -1,3 +1,4 @@
+// * Hector Matus, 11/06/2024, Generic select component with custom styles
 export type Option = {
   label: string;
   value: string;

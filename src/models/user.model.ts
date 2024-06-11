@@ -1,3 +1,4 @@
+// * Hector Matus, 11/06/2024 User model for the application.
 export type User = {
   name: string;
   favFood: string;

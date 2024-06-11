@@ -12,7 +12,7 @@ const filterOptions = [
 
 const App = () => {
   const [selectedOption, setSelectedOption] = useState("All");
-  const [filteredUsers, setFilteredUsers] = useState<User[]>(users);
+  const [filteredUsers, setFilteredUsers] = useState<User[]>([]);
 
   const handleSelectOption = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setSelectedOption(e.target.value as string);
@@ -21,16 +21,21 @@ const App = () => {
   // function sortByProperty(property: any) {
   //   activeRecords.sort((a: User, b: User) => (a[property] > b[property]) ? 1 : ((b[property] > a[property]) ? -1 : 0));
   //   activeRecords.forEach(obj => {
-  //     console.log(`Nombre: ${obj.name}, Fecha: ${obj.date}, Película Favorita: ${obj.favMovie}`);
+  //     console.log(`Name: ${obj.name}, Date: ${obj.date}, Favorite Movie: ${obj.favMovie}`);
   //   });
   // }
+
+  // useEffect to add the current date to the users at first render
   useEffect(() => {
     const currentDate = new Date().toISOString().split("T")[0];
-    users.forEach((obj) => {
-      obj.date = currentDate;
-    });
+    const updatedUsers = users.map((obj) => ({
+      ...obj,
+      date: currentDate,
+    }));
+    setFilteredUsers(updatedUsers);
   }, []);
 
+  // Simulation of the filter call by filter options
   const fetchData = async (filter: string) => {
     if (filter === "All") {
       setFilteredUsers(users);
